@@ -1,0 +1,60 @@
+<div class="persons-page">
+  <header>
+    <h1>Persons</h1>
+    <div class="header-actions">
+      <span class="username">{{ authService.username() }}</span>
+      <button type="button" (click)="toggleForm()">
+        {{ showForm() ? 'Cancel' : 'Add Person' }}
+      </button>
+      <button type="button" class="logout" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  @if (showForm()) {
+    <form class="person-form" [formGroup]="form" (ngSubmit)="submit()">
+      <input type="number" placeholder="Person ID" formControlName="personid" />
+      <input type="text" placeholder="Name" formControlName="name" />
+      <input type="text" placeholder="Qualification" formControlName="qualification" />
+      <button type="submit" [disabled]="form.invalid">Save</button>
+    </form>
+  }
+
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
+  @if (loading()) {
+    <p>Loading…</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>Person ID</th>
+          <th>Name</th>
+          <th>Qualification</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (person of persons(); track person.id) {
+          <tr>
+            <td>{{ person.personid }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.qualification }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="3">No persons found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button type="button" [disabled]="page() === 0" (click)="previousPage()">Previous</button>
+      <span>Page {{ page() + 1 }} of {{ totalPages() || 1 }}</span>
+      <button type="button" [disabled]="page() + 1 >= totalPages()" (click)="nextPage()">
+        Next
+      </button>
+    </div>
+  }
+</div>
