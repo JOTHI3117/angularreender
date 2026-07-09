@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
 import { Person } from './person.models';
 import { PersonService } from './person.service';
+import { Signals } from '../signals/signals';
 
 const PAGE_SIZE = 10;
 
 @Component({
   selector: 'app-persons',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Signals],
   templateUrl: './persons.html',
   styleUrl: './persons.css',
 })

@@ -1,8 +1,19 @@
-.persons-page {
-  max-width: 720px;
+.persons-layout {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 960px;
   margin: 2rem auto;
+}
+
+.persons-page {
+  flex: 1;
   padding: 0 1rem;
   font-family: inherit;
+}
+
+.side-panel {
+  width: 260px;
+  flex-shrink: 0;
 }
 
 header {

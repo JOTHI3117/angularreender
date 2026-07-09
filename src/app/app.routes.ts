@@ -13,4 +13,9 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: '**', redirectTo: 'persons' },
+   {
+    path: 'cart',
+    loadComponent: () => import('./features/signals/signals').then((m) => m.Signals),
+    canActivate: [authGuard],
+  }
 ];

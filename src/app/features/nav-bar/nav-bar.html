@@ -1,0 +1,9 @@
+<nav class="navbar">
+  <span class="brand">MyApp</span>
+  <div class="cart">
+    <span class="cart-icon">🛒</span>
+    @if (count() > 0) {
+      <span class="cart-badge">{{ count() }}</span>
+    }
+  </div>
+</nav>
