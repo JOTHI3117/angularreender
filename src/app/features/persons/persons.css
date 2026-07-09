@@ -36,6 +36,12 @@ button.logout {
   background: #64748b;
 }
 
+button.delete {
+  background: #dc2626;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+}
+
 button:disabled {
   background: #94a3b8;
   cursor: not-allowed;

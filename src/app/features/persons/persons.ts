@@ -94,4 +94,15 @@ export class Persons implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  deletePerson(person: Person): void {
+    if (!person.id || !confirm(`Delete ${person.name}?`)) {
+      return;
+    }
+
+    this.personService.deletePerson(person.id).subscribe({
+      next: () => this.loadPage(this.page()),
+      error: () => this.errorMessage.set('Failed to delete person.'),
+    });
+  }
 }

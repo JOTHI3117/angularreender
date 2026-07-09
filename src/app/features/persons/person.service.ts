@@ -19,4 +19,8 @@ export class PersonService {
   createPerson(person: Person): Observable<Person> {
     return this.http.post<Person>(this.baseUrl, person);
   }
+
+  deletePerson(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }
