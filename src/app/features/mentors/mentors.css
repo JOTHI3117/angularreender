@@ -31,11 +31,6 @@
   font-weight: 600;
 }
 
-.side-panel {
-  width: 260px;
-  flex-shrink: 0;
-}
-
 header {
   display: flex;
   justify-content: space-between;
@@ -84,7 +79,8 @@ button:disabled {
   margin-bottom: 1rem;
 }
 
-.person-form input {
+.person-form input,
+.person-form select {
   flex: 1;
   padding: 0.5rem;
   border: 1px solid #ccc;
@@ -101,6 +97,11 @@ td {
   text-align: left;
   padding: 0.5rem;
   border-bottom: 1px solid #e2e8f0;
+}
+
+td.actions {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .pagination {

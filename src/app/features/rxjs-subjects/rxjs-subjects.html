@@ -1,0 +1,47 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="demo">
+  <h2>Subject vs BehaviorSubject</h2>
+  <p>
+    <strong>Subject</strong> has no initial value and only notifies subscribers of values
+    emitted <em>after</em> they subscribe. <strong>BehaviorSubject</strong> always holds a
+    current value ({{ currentValue }}) and immediately replays it to any new subscriber.
+  </p>
+
+  <div class="actions">
+    <button (click)="emit()">Emit next value</button>
+    <button (click)="subscribeLate()">Add a late subscriber</button>
+  </div>
+
+  <div class="columns">
+    <section>
+      <h3>Subject log</h3>
+      <ul>
+        <li *ngFor="let entry of subjectLog">{{ entry }}</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>BehaviorSubject log</h3>
+      <ul>
+        <li *ngFor="let entry of behaviorSubjectLog">{{ entry }}</li>
+      </ul>
+    </section>
+  </div>
+
+  <input [formField]="profileForm.name" />
+@if (profileForm.name().errors().length) {
+  <span>{{ profileForm.name().errors()[0].message }}</span>
+}
+
+  <div class="demo">
+    <h2>Pipes example</h2>
+    <ul>
+      <li>uppercase: {{ sampleText | uppercase }}</li>
+      <li>lowercase: {{ sampleText | lowercase }}</li>
+      <li>date: {{ sampleDate | date: 'mediumDate' }}</li>
+      <li>currency: {{ samplePrice | currency: 'USD' }}</li>
+      <li>json: {{ sampleUser | json }}</li>
+    </ul>
+  </div>
+</div>

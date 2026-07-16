@@ -6,11 +6,11 @@
   </nav>
 
   <header>
-    <h1>Persons</h1>
+    <h1>Mentors</h1>
     <div class="header-actions">
       <span class="username">{{ authService.username() }}</span>
-      <button type="button" (click)="toggleForm()">
-        {{ showForm() ? 'Cancel' : 'Add Person' }}
+      <button type="button" (click)="showForm() ? cancelForm() : openAddForm()">
+        {{ showForm() ? 'Cancel' : 'Add Mentor' }}
       </button>
       <button type="button" class="logout" (click)="logout()">Logout</button>
     </div>
@@ -18,15 +18,12 @@
 
   @if (showForm()) {
     <form class="person-form" [formGroup]="form" (ngSubmit)="submit()">
-      <select formControlName="mentorId">
-        <option value="" disabled>Select Mentor</option>
-        @for (mentor of mentors(); track mentor.id) {
-          <option [value]="mentor.id">{{ mentor.name }}</option>
-        }
-      </select>
       <input type="text" placeholder="Name" formControlName="name" />
-      <input type="text" placeholder="Qualification" formControlName="qualification" />
-      <button type="submit" [disabled]="form.invalid">Save</button>
+      <input type="number" placeholder="Age" formControlName="age" />
+      <input type="text" placeholder="Username" formControlName="userName" />
+      <button type="submit" [disabled]="form.invalid">
+        {{ editingId() ? 'Update' : 'Save' }}
+      </button>
     </form>
   }
 
@@ -40,25 +37,26 @@
     <table>
       <thead>
         <tr>
-          <th>Person ID</th>
           <th>Name</th>
-          <th>Qualification</th>
+          <th>Age</th>
+          <th>Username</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        @for (person of persons(); track person.id) {
+        @for (mentor of mentors(); track mentor.id) {
           <tr>
-            <td>{{ person.personid }}</td>
-            <td>{{ person.name }}</td>
-            <td>{{ person.qualification }}</td>
-            <td>
-              <button type="button" class="delete" (click)="deletePerson(person)">Delete</button>
+            <td>{{ mentor.name }}</td>
+            <td>{{ mentor.age }}</td>
+            <td>{{ mentor.userName }}</td>
+            <td class="actions">
+              <button type="button" (click)="editMentor(mentor)">Edit</button>
+              <button type="button" class="delete" (click)="deleteMentor(mentor)">Delete</button>
             </td>
           </tr>
         } @empty {
           <tr>
-            <td colspan="4">No persons found.</td>
+            <td colspan="4">No mentors found.</td>
           </tr>
         }
       </tbody>
@@ -73,8 +71,4 @@
     </div>
   }
 </div>
-<div class="side-panel">
-  <app-signals></app-signals>
 </div>
-</div>
-<app-rxjs-subjects></app-rxjs-subjects>

@@ -12,10 +12,21 @@ export const routes: Routes = [
     loadComponent: () => import('./features/persons/persons').then((m) => m.Persons),
     canActivate: [authGuard],
   },
-  { path: '**', redirectTo: 'persons' },
-   {
+  {
+    path: 'mentors',
+    loadComponent: () => import('./features/mentors/mentors').then((m) => m.Mentors),
+    canActivate: [authGuard],
+  },
+  {
     path: 'cart',
     loadComponent: () => import('./features/signals/signals').then((m) => m.Signals),
     canActivate: [authGuard],
-  }
+  },
+  {
+    path: 'rxjs-subjects',
+    loadComponent: () =>
+      import('./features/rxjs-subjects/rxjs-subjects').then((m) => m.RxjsSubjects),
+    canActivate: [authGuard],
+  },
+  { path: '**', redirectTo: 'persons' },
 ];
